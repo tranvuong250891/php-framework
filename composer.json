@@ -1,0 +1,18 @@
+{
+    "name": "vuong/php-framework",
+    "authors": [
+        {
+            "name": "elsumaffia",
+            "email": "elsumaffia@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4":{
+            "app\\": "./"
+        }
+
+    },
+    "require": {
+        "vlucas/phpdotenv": "^5.2"
+    }
+}
