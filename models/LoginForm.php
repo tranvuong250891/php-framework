@@ -39,10 +39,11 @@ class LoginForm extends Model
             $this->addError('pass', 'mat. khau nay` khong dung');
             return false;
         }
+       
+        
+        return Application::$app->login($user);
 
-        var_dump($user);
-
-        // Application::$app->login();
+        
     }
 
 

@@ -44,12 +44,17 @@ class Router
         }
 
         if(is_array($callback)){
-            
-            Application::$app->controller = new $callback[0]();
-            $callback[0] = Application::$app->controller;
+           
+            $controller = new $callback[0]();
+            Application::$app->controller = $controller;
+            $controller->action = $callback[1];
+            foreach($controller->getMiddlewares() as $middleware  ){
+                $middleware->excute();
+            }
+
+            $callback[0] = $controller;
         }
-        // var_dump($callback);
-        // exit;
+       
         return call_user_func($callback, $this->request, $this->response);
         
     }
@@ -68,8 +73,11 @@ class Router
 
     public function layoutContent()
     {
-
-        $layout = Application::$app->controller->layout;
+        $layout = Application::$app->layout;
+        if(Application::$app->controller){
+            $layout = Application::$app->controller->layout;
+        }
+        
         ob_start();
         include_once Application::$ROOT_DIR . "/views/layouts/$layout.php";
         

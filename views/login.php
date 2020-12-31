@@ -5,7 +5,7 @@
 ?>
 
 <?php
-  // var_dump($model->hasError('name'));
+  
 ?>
 
 <?php

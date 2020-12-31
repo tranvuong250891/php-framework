@@ -3,8 +3,9 @@
 namespace app\models;
 
 use app\core\DbModel;
+use app\core\UserModel;
 
-class User extends DbModel
+class User extends UserModel
 {
     const STATUS_INACTIVE = 0;
     const STATUS_ACTIVE = 1;
@@ -17,7 +18,8 @@ class User extends DbModel
     public int $status = self::STATUS_INACTIVE;
     public string $pass = '';
     public string $repass = '';
-
+    
+    /* Khu vuc set abstract */
     public function tableName() : string
     {
         return 'users';
@@ -34,12 +36,26 @@ class User extends DbModel
         ];
     }
 
+    public function getDisplayName(): string
+    {
+        return $this->name;
+    }
+
+
+
     public function attributes(): array
     {
         return [
             'name', 'email', 'status', 'pass'
         ];
     }
+
+    public function primaryKey(): string
+    {   
+        return 'id';
+    }
+
+    /* End khu vuc set abstract */
 
     public function save()
     {

@@ -4,6 +4,9 @@ abstract class DBModel extends Model
 {
     abstract public function attributes():array;
     abstract public function tableName(): string;
+    abstract public function primaryKey(): string;
+
+
 
     public function save()
     {
@@ -30,14 +33,17 @@ abstract class DBModel extends Model
         $tableName = static::tableName();
 
         $attributes = array_keys($where);
-        $sql = "SELECT * FROM $tableName WHERE ". implode("AND", array_map(fn($attr)=> "$attr = :$attr", $attributes));
+        
+         $sql = "SELECT * FROM $tableName WHERE ". implode("AND", array_map(fn($attr)=> "$attr = :$attr", $attributes));
         $statement = self::prepare($sql);
         foreach($where as $attr => $value){
+            
             $statement->bindValue(":$attr", $value);
         }
        
 
         $statement->execute();
+       
         return $statement->fetchObject(static::class);
 
 

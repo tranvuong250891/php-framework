@@ -4,6 +4,7 @@ use app\core\Application;
 use app\core\Router;
 use app\controllers\SiteController;
 use app\controllers\AuthController;
+use app\models\User;
 
 $rootPath = dirname(__DIR__);
 
@@ -14,6 +15,8 @@ $dotenv->load();
 
 
 $config = [
+    'userClass' => User::class,
+
     'db' => [
         'dsn' => $_ENV['DB_DSN'],
         'user' => $_ENV['DB_USER'],
@@ -45,6 +48,12 @@ $app->router->post('/login',  [AuthController::class, "login"]);
 //REGISTER
 $app->router->get('/register',  [AuthController::class, "register"]);
 $app->router->post('/register',  [AuthController::class, "register"]);
+
+//LOGOUT
+$app->router->get('/logout', [AuthController::class, "logout"]);
+
+//PROFILE
+$app->router->get('/profile', [AuthController::class, 'profile']);
 
 
 $app->run();
