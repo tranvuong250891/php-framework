@@ -35,7 +35,7 @@ $app->router->get('/home', [SiteController::class,"home"]);
 
 //CONTACT
 $app->router->get('/contact', [SiteController::class, 'contact']);
-$app->router->post('/contact', [SiteController::class, 'handelContact']);
+$app->router->post('/contact', [SiteController::class, 'contact']);
 
 //FORM
 $app->router->get('/form',  [SiteController::class, "form"]);

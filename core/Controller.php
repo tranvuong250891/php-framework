@@ -6,7 +6,7 @@ use app\core\middlewares\BaseMiddleware;
 class Controller 
 {
     
-    public array $middlewares = [];
+    protected array $middlewares = [];
     public string $layout = "main";
     public string $action = '' ;
     
@@ -20,12 +20,18 @@ class Controller
 
     public function render($view, $params = [])
     {
-        return Application::$app->router->renderView($view, $params);
+        return Application::$app->view->renderView($view, $params);
     }
 
     public function registerMiddleware(BaseMiddleware $middleware)
     {
         $this->middlewares[] = $middleware;
     }
+
+    public function getMiddlewares()
+    {
+        return $this->middlewares;
+    }
+
 
 }

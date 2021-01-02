@@ -1,5 +1,8 @@
 <?php
-namespace app\core;  
+namespace app\core\db;  
+use app\core\Model;
+use app\core\Application;
+
 abstract class DBModel extends Model
 {
     abstract public function attributes():array;

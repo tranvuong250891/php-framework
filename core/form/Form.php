@@ -14,7 +14,7 @@ class Form
 
     public function field(Model $model, $attr)
     {
-        return new Field($model, $attr);
+        return new InputField($model, $attr);
     }
 
     public static function end()

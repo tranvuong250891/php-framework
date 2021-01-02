@@ -9,12 +9,14 @@ use app\core\Response;
 use app\models\LoginForm;
 use app\models\User;
 use app\core\middlewares\AuthMiddleware;
+use app\core\Show;
 
 
 class AuthController extends Controller
 {
     public function __construct()
     {
+        
         $this->registerMiddleware(new AuthMiddleware(['profile']));
     } 
 
@@ -77,7 +79,7 @@ class AuthController extends Controller
     public function profile(Request $request, Response $response)
     {
         return $this->render('profile',[
-            'model'=> $loginForm ?? null,
+            'model'=> $loginForm ?? null ,
         ]);
     }
 

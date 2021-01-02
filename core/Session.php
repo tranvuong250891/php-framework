@@ -24,7 +24,7 @@ class Session
 
     }
 
-    public function setflash($key, $message)
+    public function setFlash($key, $message)
     {
         $_SESSION[self::FLASH_KEY][$key] = [
             'removed' => false,
@@ -33,7 +33,7 @@ class Session
         ];
     }
 
-    public function getflash($key)
+    public function getFlash($key)
     {
         return $_SESSION[self::FLASH_KEY][$key]['value'] ?? false; 
     }
